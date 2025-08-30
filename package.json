@@ -1,0 +1,13 @@
+{
+  "name": "workhunt-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "WorkHunt full-stack app (backend in job/server, frontend in job/client)",
+  "scripts": {
+    "server": "npm --prefix job/server run dev",
+    "client": "npm --prefix job/client run dev",
+    "install:all": "npm --prefix job/server install --no-fund --no-audit && npm --prefix job/client install --no-fund --no-audit"
+  }
+}
+
+
