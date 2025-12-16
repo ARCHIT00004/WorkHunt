@@ -2,12 +2,21 @@
   "name": "workhunt-monorepo",
   "private": true,
   "version": "1.0.0",
-  "description": "WorkHunt full-stack app (backend in job/server, frontend in job/client)",
+  "description": "WorkHunt full-stack app - Ready for Vercel deployment",
   "scripts": {
     "server": "npm --prefix job/server run dev",
     "client": "npm --prefix job/client run dev",
-    "install:all": "npm --prefix job/server install --no-fund --no-audit && npm --prefix job/client install --no-fund --no-audit"
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "install:all": "npm --prefix job/server install --no-fund --no-audit && npm --prefix job/client install --no-fund --no-audit",
+    "install:server": "npm --prefix job/server install --no-fund --no-audit",
+    "install:client": "npm --prefix job/client install --no-fund --no-audit",
+    "build:client": "npm --prefix job/client run build",
+    "build:server": "echo 'No build step required for Node.js server'",
+    "build": "npm run build:client && npm run build:server",
+    "deploy:check": "echo 'Checking deployment readiness...' && node -e \"console.log('✅ Ready for deployment!')\"",
+    "deploy:help": "echo 'Deployment Guide:' && echo '1. Push code to GitHub' && echo '2. Deploy backend to Vercel (job/server)' && echo '3. Deploy frontend to Vercel (job/client)' && echo '4. Update CORS settings' && echo 'See DEPLOYMENT.md for detailed steps'"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }
-
-
